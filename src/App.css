@@ -26,3 +26,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* @font-face{
+  font-family: Proxima Nova;
+  font-weight:100;
+  font-style:normal;
+  src:url(https://s.yimg.com/ap/build/fonts/proxima-nova-thin.eot);
+} */

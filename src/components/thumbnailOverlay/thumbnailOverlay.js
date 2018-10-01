@@ -1,5 +1,5 @@
 import React from 'react';
-import './thumbnailOverlay.css'
+import './thumbnailOverlay.css';
 
 class Overlay extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class Overlay extends React.Component {
               <i className="fa fa-eye"></i>
             </div>
             <div className="overlay-view-counter">
-              {this.props.views}
+              &nbsp;{this.props.views}
             </div>
           </div>
 

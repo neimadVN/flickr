@@ -7,7 +7,7 @@ import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroller';
 import Gallery from 'react-grid-gallery';
 import Overlay from './components/thumbnailOverlay/thumbnailOverlay.js';
-
+import NavigationBar from './components/headerBar/headerBar.js';
 // Key:
 // f0c921a36fb8cd43667c5247a325d47d
 
@@ -52,21 +52,27 @@ class App extends Component {
     console.log('rendering');
     return (
       <div className="App">
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={loadFunc}
-          hasMore={this.state.page <= 25 ? true : false}
-          loader={<div className="loader" key={0}>Loading ...</div>}
-        >
-          <div style={{ boxSizing: "border-box", minHeight: "1px", marginLeft: "auto", marginRight: "auto", padding: "25px",width:"100%", display: "block" }}>
-            <Gallery
-              images={IMAGES}
-              enableImageSelection={false}
-            />
+        <div style={{ position: "sticky", "z-index": "10", top: "0", backgroundColor: "white", borderBottom: "2px solid gray" }}>
+          <NavigationBar />
+          <h4 style={{ textAlign: "left", margin: "15px 15% 0 15%", paddingBottom: "15px"}}>EXPLORE</h4>
+        </div>
+        <div style={{ padding: "25px 15% 0px 15%", backgroundColor: "GhostWhite"  }}>
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={loadFunc}
+            hasMore={this.state.page <= 25 ? true : false}
+            loader={<div className="loader" key={0}>Loading ...</div>}
+          >
+            <div style={{ width: "100%"}}>
+              <Gallery
+                images={IMAGES}
+                enableImageSelection={false}
+              />
+            </div>
 
-          </div>
-        </InfiniteScroll>
+          </InfiniteScroll>
 
+        </div>
       </div>
     );
   }

@@ -52,12 +52,12 @@ class App extends Component {
     console.log('rendering');
     return (
       <div className="App">
-        <div style={{ maxWidth: "1080px", marginLeft: "auto", marginRight: "auto", padding: "25px", backgroundColor: "LightYellow" }}>
+        <div style={{ maxWidth: "1080px", marginLeft: "auto", marginRight: "auto", padding: "25px" }}>
 
           <InfiniteScroll
             pageStart={0}
             loadMore={loadFunc}
-            hasMore={true || false}
+            hasMore={this.state.page < 20 ? true : false}
             loader={<div className="loader" key={0}>Loading ...</div>}
           >
             <Gallery

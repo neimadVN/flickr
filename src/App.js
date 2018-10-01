@@ -52,20 +52,20 @@ class App extends Component {
     console.log('rendering');
     return (
       <div className="App">
-        <div style={{ maxWidth: "1080px", marginLeft: "auto", marginRight: "auto", padding: "25px" }}>
-
-          <InfiniteScroll
-            pageStart={0}
-            loadMore={loadFunc}
-            hasMore={this.state.page < 20 ? true : false}
-            loader={<div className="loader" key={0}>Loading ...</div>}
-          >
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={loadFunc}
+          hasMore={this.state.page <= 25 ? true : false}
+          loader={<div className="loader" key={0}>Loading ...</div>}
+        >
+          <div style={{ boxSizing: "border-box", minHeight: "1px", marginLeft: "auto", marginRight: "auto", padding: "25px",width:"100%", display: "block" }}>
             <Gallery
               images={IMAGES}
               enableImageSelection={false}
             />
-          </InfiniteScroll>
-        </div>
+
+          </div>
+        </InfiniteScroll>
 
       </div>
     );
@@ -79,7 +79,7 @@ const fetchData = function () {
     .then((res) => {
       const newphotoList = res.data.photos.photo;
 
-      if (this.state.page < 20) {
+      if (this.state.page <= 25) {
         this.setState({
           photoList: this.state.photoList.concat(newphotoList),
           page: Number(this.state.page + 1)

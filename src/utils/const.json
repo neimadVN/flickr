@@ -1,8 +1,8 @@
 {
   "FLICKR_API_PARAMS": {
     "method": "flickr.interestingness.getList",
-    "api_key": "e555b6fda858a9389fe089c2a4e5adf0",
-    "extras": "owner_name, views, url_m",
+    "api_key": "6517187ddd2d0dde34a502f0bb2fc991",
+    "extras": "owner_name,%20views,%20url_m",
     "format": "json",
     "nojsoncallback": 1
   }

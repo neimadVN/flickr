@@ -44,26 +44,30 @@ class App extends Component {
     });
 
     const loadFunc = () => {
-      console.log('load ne`!!!');
       console.log(this.state.page);
       let sfetchData = fetchData.bind(this);
       sfetchData();
     };
     console.log('rendering');
     return (
-      <div className="App">
+      <div className="App" style={{ backgroundColor: "#ECF0F1" }}>
         <div style={{ position: "sticky", "z-index": "10", top: "0", backgroundColor: "white", borderBottom: "2px solid gray" }}>
           <NavigationBar />
-          <h4 style={{ textAlign: "left", margin: "15px 15% 0 15%", paddingBottom: "15px"}}>EXPLORE</h4>
+          <h4 style={{ textAlign: "left", margin: "15px 15% 0 15%", paddingBottom: "15px" }}>EXPLORE</h4>
         </div>
-        <div style={{ padding: "25px 15% 0px 15%", backgroundColor: "GhostWhite"  }}>
+        <div>
           <InfiniteScroll
             pageStart={0}
             loadMore={loadFunc}
             hasMore={this.state.page <= 25 ? true : false}
-            loader={<div className="loader" key={0}>Loading ...</div>}
+            loader={<div className="loader" key={0}>
+              <img
+                src="http://www.clasesdeperiodismo.com/wp-content/uploads/2016/10/Flickr.gif"
+                style={{ width: '300px', height: '215.0px' }}
+              />
+            </div>}
           >
-            <div style={{ width: "100%"}}>
+            <div style={{ width: "100%" }}>
               <Gallery
                 images={IMAGES}
                 enableImageSelection={false}
@@ -81,8 +85,10 @@ class App extends Component {
 
 const fetchData = function () {
   const queryParams = UTILS.buildQueryURI(this.state.page, 20);
+  console.log(APILink + queryParams);
   axios.get(APILink + queryParams)
     .then((res) => {
+      console.log(res);
       const newphotoList = res.data.photos.photo;
 
       if (this.state.page <= 25) {

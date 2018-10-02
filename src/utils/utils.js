@@ -12,7 +12,7 @@ const UTILS = {
       'nojsoncallback': FLICKR_API_PARAMS.nojsoncallback
     }
     const queryString = '?' + Object.keys(queryObj).map(key => key + '=' + queryObj[key]).join('&');
-
+    
     return queryString;
   }
 };

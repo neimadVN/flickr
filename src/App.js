@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 
 import Explorer from './components/explorer/explorer.js';
@@ -11,19 +11,34 @@ import NavigationBar from './components/headerBar/headerBar.js';
 // Secret:
 // 40be6f88c33e7147
 
-const componentExplorer = () => {
-  console.log('cac');
+const componentExplorer = ({match}) => {
   return (
-    <Explorer/>
+    <div>
+      <div style={{ position: "sticky", zIndex: "10", top: "0", backgroundColor: "white", borderBottom: "2px solid gray" }}>
+        <NavigationBar 
+          tag={match.params.tag}
+        />
+        <h4 style={{ textAlign: "left", margin: "15px 15% 0 15%", paddingBottom: "15px" }}>EXPLORE</h4>
+      </div>
+      <Explorer
+        tag={match.params.tag}
+      />
+    </div>
+    
   )
 }
 
 const componentPhotoDetail = ({ match }) => {
-  console.log('cec');
   return (
-    <PhotoDetail 
-      photoId={match.params.id}
-    />
+    <div>
+      <div style={{ position: "sticky", zIndex: "10", top: "0", backgroundColor: "white", borderBottom: "2px solid gray" }}>
+        <NavigationBar />
+        <h4 style={{ textAlign: "left", margin: "15px 15% 0 15%", paddingBottom: "15px" }}>EXPLORE</h4>
+      </div>
+      <PhotoDetail 
+        photoId={match.params.id}
+      />
+    </div>
   )
 }
 
@@ -37,15 +52,15 @@ class App extends Component {
   render() {
     return (
       <div className="App" style={{ backgroundColor: "#ECF0F1" }}>
-        <div style={{ position: "sticky", zIndex: "10", top: "0", backgroundColor: "white", borderBottom: "2px solid gray" }}>
-          <NavigationBar />
-          <h4 style={{ textAlign: "left", margin: "15px 15% 0 15%", paddingBottom: "15px" }}>EXPLORE</h4>
-        </div>
         <Router>
           <Switch>
             <Route 
               path="/photo/:id"
               component={componentPhotoDetail}
+            />
+            <Route
+              path="/:tag"
+              component={componentExplorer}
             />
             <Route
               path="/"

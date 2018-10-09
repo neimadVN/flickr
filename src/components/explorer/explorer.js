@@ -29,8 +29,8 @@ class Explorer extends Component {
         src: currPhoto.url_m,
         id: currPhoto.id,
         thumbnail: currPhoto.url_m,
-        thumbnailWidth: currPhoto.width_m,
-        thumbnailHeight: currPhoto.height_m,
+        thumbnailWidth: Number(currPhoto.width_m),
+        thumbnailHeight: Number(currPhoto.height_m),
         caption: currPhoto.title,
         customOverlay: <Overlay title={currPhoto.title}
           author={currPhoto.ownername}
@@ -39,9 +39,11 @@ class Explorer extends Component {
       }
     });
 
+    console.log(this.state.photoList);
+
     const loadFunc = () => {
       let sfetchData = fetchData.bind(this);
-      sfetchData();
+      sfetchData(this.props.tag);
     };
 
     return (
@@ -54,6 +56,7 @@ class Explorer extends Component {
             <img
               src="http://www.clasesdeperiodismo.com/wp-content/uploads/2016/10/Flickr.gif"
               style={{ width: '300px', height: '215.0px' }}
+              alt="loading..."
             />
           </div>}
         >
@@ -72,12 +75,12 @@ class Explorer extends Component {
   }
 }
 
-const fetchData = function () {
-  const queryParams = UTILS.buildQueryURI(this.state.page, 20);
+const fetchData = function (tag) {
+  const queryParams = tag? UTILS.buildTagSearchQuery(20, this.state.page, tag) : UTILS.buildQueryURI(this.state.page, 20);
 
   axios.get(APILink + queryParams)
     .then((res) => {
-
+   
       const newphotoList = res.data.photos.photo;
 
       if (this.state.page <= 25) {
